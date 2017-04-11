@@ -6,6 +6,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     EditText edit1, edit2;
@@ -15,16 +16,18 @@ public class MainActivity extends AppCompatActivity {
     public static final int SELECT_EDIT2=1;
     int selectEdit=SELECT_EDIT1;
     String numStr=" ";
-
+    TextView textResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        super.onCreate(savedInstanceState); //AppCompatActivity 의 onCreate
         setContentView(R.layout.activity_main);
         edit1=(EditText)findViewById(R.id.edit1);
         edit2=(EditText)findViewById(R.id.edit2);
         edit1.setOnTouchListener(editHandler);
         edit2.setOnTouchListener(editHandler);
+        textResult=(TextView)findViewById(R.id.result);
+
 
         for (int i = 0; i < butNums.length; i++) {
             butNums[i] = (Button) findViewById(R.id.but_num1 + i);
@@ -88,7 +91,8 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.but_op3: result=num1*num2; break;
                 case R.id.but_op4: result=(double)num1/num2;break;
             }
+            textResult.setText("*계산결과="+result);
         }
-    }
+    };
 }
 
